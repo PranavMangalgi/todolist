@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { finishedTodos, setEditing } from "../../features/todoSlice";
+import { deleteTodo, finishedTodos, setEditing } from "../../features/todoSlice";
+import { MdDelete } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 function Todos() {
   const { todos, editing } = useSelector((state) => state.todos);
@@ -25,13 +26,25 @@ function Todos() {
                 )}
               </div>
 
-              <div
-                className="sm:transition-transform sm:hover:scale-125"
-                onClick={() => {
-                  dispatch(setEditing({ status: true, currentEdit: todo.id }));
-                }}
-              >
-                <TbEdit className="text-[#BDBDBD] " size="1.2rem" />
+              <div className="flex gap-x-3  justify-center items-center w-1/5">
+                <div
+                  className="sm:transition-transform sm:hover:scale-125"
+                  onClick={() => {
+                    dispatch(
+                      setEditing({ status: true, currentEdit: todo.id })
+                    );
+                  }}
+                >
+                  <TbEdit className="text-[#BDBDBD] " size="1.2rem" />
+                </div>
+                <div
+                  className="sm:transition-transform sm:hover:scale-125"
+                  onClick={() => {
+                    dispatch(deleteTodo(todo.id));
+                  }}
+                >
+                  <MdDelete className="text-[#BDBDBD] " size="1.2rem" />
+                </div>
               </div>
             </div>
           </div>

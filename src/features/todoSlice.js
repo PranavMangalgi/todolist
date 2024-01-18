@@ -13,6 +13,9 @@ const todos = createSlice({
     addTodos: (state, action) => {
       state.todos.push(action.payload);
     },
+    deleteTodo:(state,{payload})=>{
+      state.todos = state.todos.filter(todo=>todo.id!==payload);
+    },
     finishedTodos: (state, { payload }) => {
       const fullfilled = state.todos.find((todo) => todo.id == payload);
       state.completedTodos.push(fullfilled);
@@ -43,6 +46,7 @@ const todos = createSlice({
 
 export const {
   addTodos,
+  deleteTodo,
   finishedTodos,
   setEditing,
   deleteCompletedTodo,
